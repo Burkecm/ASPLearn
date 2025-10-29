@@ -6,10 +6,10 @@ namespace LeaveManagementSystem.Web.Models.MapperProfiles
 {
     public class MappingProfile : Profile
     {
-        public MappingProfile() 
+        public MappingProfile()
         {
             CreateMap<LeaveType, ReadOnlyVM>();
-            CreateMap<LeaveType, CreateVM>();
+            CreateMap<LeaveType, CreateVM>().ReverseMap();
             CreateMap<LeaveType, EditVM>().ReverseMap();
         }
     }
