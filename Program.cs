@@ -1,6 +1,9 @@
 using LeaveManagementSystem.Web.Data;
+using LeaveManagementSystem.Web.Models.LeaveTypes;
+using LeaveManagementSystem.Web.Models.MapperProfiles;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +16,12 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddAutoMapper(cfg => {
+    cfg.CreateMap<LeaveType, ReadOnlyVM>();
+    cfg.CreateMap<LeaveType, CreateVM>();
+    cfg.CreateMap<LeaveType, EditVM>().ReverseMap();
+});
 
 var app = builder.Build();
 
